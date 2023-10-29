@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <style>
+        /* Ваш стиль CSS для корзини тут */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #cart {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .cart-item {
+            flex: 1;
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cart-item h2 {
+            font-size: 24px;
+        }
+
+        .cart-item .price {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .delete-button {
+            background-color: #f00;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Корзина</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Головна</a></li>
+        </ul>
+    </nav>
+    <div id="cart" class="categories">
+        <!-- JavaScript буде завантажувати вміст корзини сюди -->
+    </div>
+
+    <script>
+        // JavaScript код для завантаження та відображення вмісту корзини
+        const cartItems = document.getElementById('cart');
+
+        // JavaScript код для завантаження вмісту корзини з localStorage та відображення його
+        const savedCart = JSON.parse(localStorage.getItem('cart'));
+        if (savedCart) {
+            savedCart.forEach((product, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h2>${product.name}</h2>
+                    <p class="price">${product.price} грн</p>
+                    <button class="delete-button" data-index="${index}">Видалити</button>
+                `;
+                cartItems.appendChild(cartItem);
+
+                // Додати обробник подій для видалення товару
+                const deleteButton = cartItem.querySelector('.delete-button');
+                deleteButton.addEventListener('click', () => {
+                    savedCart.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(savedCart));
+                    cartItems.removeChild(cartItem);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
