@@ -1,13 +1,13 @@
 [
     {
         "name": "Пошукові системи 1",
-        "image": "image1.jpg",
+        "image": "images/searchSystem1.webp",
         "price": 199.99,
         "description": "Це опис першого акустичного сейфа."
     },
     {
         "name": "Пошукові системи 2",
-        "image": "image2.jpg",
+        "image": "images/searchSystem2.webp",
         "price": 149.99,
         "description": "Це опис другого акустичного сейфа."
     }
