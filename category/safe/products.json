@@ -1,13 +1,13 @@
 [
     {
         "name": "Акустичний сейф 1",
-        "image": "/../../images/safe1.webp",
+        "image": "../../../images/safe1.webp",
         "price": 199.99,
         "description": "Це опис першого акустичного сейфа."
     },
     {
         "name": "Акустичний сейф 2",
-        "image": "/../../images/safe2.webp",
+        "image": "../../../images/safe2.webp",
         "price": 149.99,
         "description": "Це опис другого акустичного сейфа."
     }
