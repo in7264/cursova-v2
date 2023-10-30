@@ -75,3 +75,54 @@ nav a:hover {
 .product p {
     font-size: 16px;
 }
+
+#cart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.cart-items {
+    display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.cart-item {
+    flex: 1;
+    max-width: 300px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cart-item h2 {
+    font-size: 24px;
+}
+
+.cart-item .price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.delete-button {
+    background-color: #f00;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
