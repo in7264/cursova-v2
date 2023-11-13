@@ -14,8 +14,12 @@
             <ul>
                 <li><a href="../../index.html">Головна</a></li>
                 <li><a href="../safe/product.html">Акустичні сейфи</a></li>
-                <li><a href="../searchSystem/product.html">Пошукові системи</a></li>
-                <li><a href="#">Категорія 3</a></li>
+                <li><a href="../searchSystem/product.html">Пошукові системи Delta S/X</a></li>
+                <li><a href="../fieldindicators/product.html">Індикатори поля</a></li>
+                <li><a href="../LocatorsOfNonLinearTransitions/product.html">Локатори нелінійних переходів</a></li>
+                <li><a href="../AnotherSearchTechnique/product.html">Інша пошукова техніка</a></li>
+                <li><a href="../Anti-leakageEquipment/product.html">Обладнання протидії витоку інформації</a></li>
+                
                 <li><a href="../card/cart.html">Корзина</a></li>
             </ul>
         </nav>
@@ -23,21 +27,23 @@
             <img id="product-image" alt="Товар">
             <h2 id="product-name"></h2>
             <p id="product-price"></p>
-            <p id="product-description"></p>
+            <div id="product-description"></div>
         </div>
 
         <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const productName = urlParams.get('product');
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
 
             const getParentDirectory = (url) => {
                 const urlParts = url.split('/');
-                urlParts.shift();
-                urlParts.shift();
-                urlParts.shift();
-                urlParts.shift();
-                urlParts.shift();
-                urlParts.pop(); // Видаляємо останній елемент (поточний файл)
+
+                while (urlParts.length > 2) {
+                    urlParts.shift();
+                }
+
+                // Удаляем последний элемент (текущий файл)
+                urlParts.pop();
+
                 return urlParts.join('/');
             };
 
@@ -45,20 +51,20 @@
             const productionJsonPath = `../${previousDirectory}/products.json`;
 
             fetch(productionJsonPath)
-            .then(response => response.json())
-            .then(data => {
-                const product = data.find(item => item.name === productName);
-                if (product) {
-                    document.getElementById('product-image').src = product.image;
-                    document.getElementById('product-name').innerText = product.name;
-                    document.getElementById('product-price').innerText = `Ціна: ${product.price} грн`;
-                    document.getElementById('product-description').innerText = product.description2;
-                } else {
-                    // Якщо товар не знайдено, відобразити повідомлення про помилку
-                    document.getElementById('product-details').innerHTML = '<p>Товар не знайдено</p>';
-                }
-            })
-            .catch(error => console.error('Помилка завантаження товарів:', error));
+                .then(response => response.json())
+                .then(data => {
+                    const product = data.find(item => item.name === productName);
+                    if (product) {
+                        document.getElementById('product-image').src = product.image;
+                        document.getElementById('product-name').innerText = product.name;
+                        document.getElementById('product-price').innerText = `Ціна: ${product.price} грн`;
+                        document.getElementById('product-description').innerHTML = product.description2;
+                    } else {
+                        // Якщо товар не знайдено, відобразити повідомлення про помилку
+                        document.getElementById('product-details').innerHTML = '<p>Товар не знайдено</p>';
+                    }
+                })
+                .catch(error => console.error('Помилка завантаження товарів:', error));
         </script>
     </body>
 </html>
